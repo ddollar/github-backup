@@ -9,7 +9,7 @@ begin
     gem.email = "<ddollar@gmail.com>"
     gem.homepage = "http://github.com/ddollar/github-backup"
     gem.authors = ["David Dollar"]
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.add_runtime_dependency 'fcoury-octopi', '= 0.0.11'
   end
 
 rescue LoadError
