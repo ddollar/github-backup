@@ -6,6 +6,10 @@ To install it as a Gem, just run:
 
   $ sudo gem install ddollar-github-backup
 
+To use it:
+
+  $ github-backup /path/to/my/backup/root
+
 == Authenticated Usage
 
 === Seamless authentication using .gitconfig defaults
