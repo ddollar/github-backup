@@ -15,7 +15,8 @@ To use it:
 === Seamless authentication using .gitconfig defaults
 
 You will need a <tt>~/.gitconfig</tt> file in place with a [github] section
-See: http://github.com/guides/tell-git-your-user-name-and-email-address)
+
+See: http://github.com/guides/tell-git-your-user-name-and-email-address
 
 == Author
 
