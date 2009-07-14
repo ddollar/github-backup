@@ -10,6 +10,7 @@ begin
     gem.homepage = "http://github.com/ddollar/github-backup"
     gem.authors = ["David Dollar"]
     gem.add_runtime_dependency 'fcoury-octopi', '= 0.0.11'
+    gem.default_executable = 'github-backup'
   end
 
 rescue LoadError
