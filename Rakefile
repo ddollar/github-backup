@@ -9,7 +9,7 @@ begin
     gem.email = "<ddollar@gmail.com>"
     gem.homepage = "http://github.com/ddollar/github-backup"
     gem.authors = ["David Dollar"]
-    gem.add_runtime_dependency 'ddollar-octopi', '= 0.0.13'
+    gem.add_runtime_dependency 'fcoury-octopi', '= 0.1.0'
     gem.default_executable = 'github-backup'
   end
 
