@@ -5,10 +5,13 @@ $:.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'octopi'
 require 'github-backup'
 
-unless ARGV.length == 1
-  puts "usage: github-backup <local backup root>"
+unless ARGV.length == 2
+  puts "usage: github-backup <username> <local backup root>"
   exit 1
 end
 
-backup = Github::Backup.new(ARGV.first)
+username = ARGV.shift
+root     = ARGV.shift
+
+backup = Github::Backup.new(username, root)
 backup.execute

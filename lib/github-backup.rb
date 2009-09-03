@@ -7,9 +7,10 @@ class Github::Backup
 
   include Octopi
 
-  attr_reader :backup_root, :debug
+  attr_reader :backup_root, :debug, :username
 
-  def initialize(backup_root)
+  def initialize(username, backup_root)
+    @username    = username
     @backup_root = backup_root
     @debug = false
   end
@@ -17,7 +18,7 @@ class Github::Backup
   def execute
     FileUtils::mkdir_p(backup_root)
     authenticated do |api|
-      repositories = User.find('ddollar').repositories.sort_by { |r| r.name }
+      repositories = User.find(username).repositories.sort_by { |r| r.name }
       repositories.each do |repository|
         puts "Backing up: #{repository.name}"
         backup_repository repository
