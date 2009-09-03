@@ -8,7 +8,7 @@ To install it as a Gem, just run:
 
 To use it:
 
-  $ github-backup /path/to/my/backup/root
+  $ github-backup ddollar /path/to/my/backup/root
 
 == Authenticated Usage
 
