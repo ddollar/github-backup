@@ -19,7 +19,7 @@ class Github::Backup
 
   def execute
     FileUtils::mkdir_p(backup_root)
-    authenticated do |api|
+    authenticated do
       repositories = User.find(username).repositories.sort_by { |r| r.name }
       repositories.each do |repository|
         puts "Backing up: #{repository.name}"
