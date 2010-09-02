@@ -5,6 +5,8 @@ module Github; end
 
 class Github::Backup
 
+  VERSION = "0.4.0"
+
   include Octopi
 
   attr_reader :backup_root, :debug, :username
