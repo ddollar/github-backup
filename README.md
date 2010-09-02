@@ -4,7 +4,7 @@ Back up your Github repositories locally.
 
 To install it as a Gem, just run:
 
-    $ gem install ddollar-github-backup
+    $ gem install github-backup
 
 To use it:
 
