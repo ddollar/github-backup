@@ -11,14 +11,18 @@ class Github::Backup
 
   attr_reader :backup_root, :debug, :username
 
-  def initialize(username, backup_root)
+  def initialize(username, backup_root, options = {})
     @username    = username
     @backup_root = backup_root
+    @options     = options
+    if (options[:token] && !options[:login])
+      options[:login] = @username
+    end
     @debug = false
   end
 
   def execute
-    backup_all
+    backup_all @options
     
   rescue Errno::ENOENT
     puts "Please install git and create a ~/.gitconfig"
@@ -31,15 +35,10 @@ class Github::Backup
     unless (e.message =~ /status 401$/)
       raise e
     end
+    puts "Github API authentication failed."
     puts "Please add a [github] section to your ~/.gitconfig"
     puts "  See: http://github.com/guides/tell-git-your-user-name-and-email-address"
-    puts "Or, authenticate with your username and API token."
-    options = {}
-    print "Username: "
-    options[:login] = gets.chomp
-    print "Token: "
-    options[:token] = gets.chomp
-    backup_all options
+    puts "Or, use the arguments to authenticate with your username and API token."
   end
 
 private ######################################################################

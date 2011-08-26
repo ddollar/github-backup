@@ -4,14 +4,29 @@ $:.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 require 'octopi'
 require 'github-backup'
+require 'optparse'
+
+options = {}
+optionparser = OptionParser.new do |opts|
+  opts.banner = "Usage: github-backup [options] username local_backup_root"
+  
+  opts.on("-t", "--token TOKEN", "Github API Token") do |t|
+    options[:token] = t
+  end
+  
+  opts.on("-u", "--username USER", "Github API Username") do |u|
+    options[:login] = u
+  end
+end
+optionparser.parse!
 
 unless ARGV.length == 2
-  puts "usage: github-backup <username> <local backup root>"
+  puts optionparser.help
   exit 1
 end
 
 username = ARGV.shift
 root     = ARGV.shift
 
-backup = Github::Backup.new(username, root)
+backup = Github::Backup.new(username, root, options)
 backup.execute
