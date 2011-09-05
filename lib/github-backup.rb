@@ -5,7 +5,7 @@ module Github; end
 
 class Github::Backup
 
-  VERSION = "0.4.1"
+  VERSION = "0.5.0"
 
   include Octopi
 
