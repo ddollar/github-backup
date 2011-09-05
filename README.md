@@ -18,10 +18,10 @@ You will need a `~/.gitconfig` file in place with a `[github]` section
 
 See: http://github.com/guides/tell-git-your-user-name-and-email-address
 
-### Prompt for authentication
+### Specify authentication at the command line
 
-If you don't have a `[github]` section set up in your `~/.gitconfig` file, you 
-can provide your user name and Github API token at the prompt.
+If you don't have a `[github]` section set up in your `~/.gitconfig` file, you
+can provide your user name and Github API at the command line.
 
 ## License
 
