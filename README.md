@@ -29,7 +29,10 @@ MIT License
 
 ## Author
 
-David Dollar
+Created by David Dollar
+
+Patches contributed by:
+  Gabriel Gilder
 
 ## Copyright
 
