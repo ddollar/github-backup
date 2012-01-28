@@ -56,7 +56,7 @@ private ######################################################################
   end
 
   def backup_directory_for(repository)
-    File.join(backup_root, repository.name)
+    File.join(backup_root, repository.name) + '.git'
   end
 
   def backup_all(options={})
