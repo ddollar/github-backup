@@ -80,7 +80,7 @@ private ######################################################################
 
   def backup_repository_initial(repository)
     FileUtils::cd(backup_root) do
-      shell("git clone -n #{repository.clone_url}")
+      shell("git clone --mirror -n #{repository.clone_url}")
     end
   end
 
