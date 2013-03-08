@@ -1,15 +1,14 @@
-require 'octopi'
+require 'fileutils'
+require 'octokit'
 require 'pp'
 
 module Github; end
 
 class Github::Backup
 
-  VERSION = "0.5.0"
+  VERSION = "0.6.0"
 
-  include Octopi
-
-  attr_reader :backup_root, :debug, :username
+  attr_reader :backup_root, :debug, :username, :client
 
   def initialize(username, backup_root, options = {})
     @username    = username
@@ -19,41 +18,19 @@ class Github::Backup
       options[:login] = @username
     end
     @debug = false
+    @client = Octokit::Client.new(:login => options[:login], :oauth_token => options[:token])
   end
 
   def execute
-    backup_all @options
-    
-  rescue Errno::ENOENT
-    puts "Please install git and create a ~/.gitconfig"
-    puts "  See: http://github.com/guides/tell-git-your-user-name-and-email-address"
-  rescue NoMethodError
-    puts "Please add a [github] section to your ~/.gitconfig"
-    puts "  See: http://github.com/guides/tell-git-your-user-name-and-email-address"
-  rescue Octopi::APIError => e
-    # only handle "Authentication required" errors
-    unless (e.message =~ /status 401$/)
-      raise e
-    end
+    backup_all
+  rescue Octokit::Unauthorized => e
     puts "Github API authentication failed."
     puts "Please add a [github] section to your ~/.gitconfig"
     puts "  See: http://github.com/guides/tell-git-your-user-name-and-email-address"
     puts "Or, use the arguments to authenticate with your username and API token."
   end
 
-private ######################################################################
-
-  def github_authenticate(options={})
-    if (options[:login])
-      authenticated_with(options) do
-        yield
-      end
-    else
-      authenticated do
-        yield
-      end
-    end
-  end
+  private ######################################################################
 
   def backup_directory_for(repository)
     File.join(backup_root, repository.name) + '.git'
@@ -61,12 +38,10 @@ private ######################################################################
 
   def backup_all(options={})
     FileUtils::mkdir_p(backup_root)
-    github_authenticate(options) do
-      repositories = User.find(username).repositories.sort_by { |r| r.name }
-      repositories.each do |repository|
-        puts "Backing up: #{repository.name}"
-        backup_repository repository
-      end
+    repositories = client.repos(username).sort_by { |r| r.name }
+    repositories.each do |repository|
+      puts "Backing up: #{repository.name}"
+      backup_repository repository
     end
   end
 
