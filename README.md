@@ -1,12 +1,4 @@
-# OBSOLETE DUE TO USING Github v2 API
-
-Please note that as of April 2014 this code does not work at all since it 
-uses the v2 API. A PR to update to v3 would be accepted.
-
-See https://github.com/ddollar/github-backup/issues/6
-
 ## github-backup
-
 
 Back up your Github repositories locally.
 
