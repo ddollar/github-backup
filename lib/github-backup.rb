@@ -1,6 +1,7 @@
 require 'fileutils'
 require 'octokit'
 require 'pp'
+require 'yaml'
 
 module Github; end
 
@@ -15,6 +16,13 @@ class Github::Backup
     @backup_root = backup_root
     @options     = options
     @debug       = false
+
+    unless options.key?(:token)
+      config = read_gitconfig
+      if config.key?('github')
+        options[:token] = config['github'].fetch('token', nil)
+      end
+    end
 
     if options[:token]
       @client = Octokit::Client.new(:access_token => options[:token])
@@ -100,6 +108,31 @@ class Github::Backup
   def username_is_authenticated_user?
     return false unless client.token_authenticated?
     username == client.user.login
+  end
+
+  def read_gitconfig
+    config = {}
+    group = nil
+
+    return config unless File.exists?(gitconfig_path)
+
+    File.foreach(gitconfig_path) do |line|
+      line.strip!
+      if line[0] != ?# && line =~ /\S/
+        if line =~ /^\[(.*)\]$/
+          group = $1
+          config[group] ||= {}
+        else
+          key, value = line.split("=").map { |v| v.strip }
+          config[group][key] = value
+        end
+      end
+    end
+    config
+  end
+
+  def gitconfig_path
+    "#{ENV['HOME']}/.gitconfig"
   end
 
   def shell(command)
