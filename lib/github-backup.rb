@@ -44,11 +44,27 @@ class Github::Backup
 
   def backup_all
     FileUtils::mkdir_p(backup_root)
-    repositories = client.repos(username).sort_by { |r| r.name }
+    repositories = find_repositories.sort_by { |r| r.name }
     repositories.each do |repository|
       puts "Backing up: #{repository.name}"
       backup_repository repository
     end
+  end
+
+  def find_repositories
+    repos = []
+    repos.concat(client.repos(username))
+    last_response = client.last_response
+
+    unless last_response.rels[:next].nil?
+      loop do
+        last_response = last_response.rels[:next].get
+        repos.concat(last_response.data)
+        break if last_response.rels[:next].nil?
+      end
+    end
+
+    repos
   end
 
   def backup_repository(repository)
