@@ -14,11 +14,7 @@ class Github::Backup
     @username    = username
     @backup_root = backup_root
     @options     = options
-    if (options[:token] && !options[:login])
-      options[:login] = @username
-    end
-
-    @debug = false
+    @debug       = false
 
     if options[:token]
       @client = Octokit::Client.new(:access_token => options[:token])

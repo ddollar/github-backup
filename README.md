@@ -29,7 +29,7 @@ See: http://github.com/guides/tell-git-your-user-name-and-email-address
 ### Specify authentication at the command line
 
 If you don't have a `[github]` section set up in your `~/.gitconfig` file, you
-can provide your user name and Github API at the command line.
+can provide your Github OAuth access token at the command line.
 
 ## License
 
