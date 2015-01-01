@@ -42,7 +42,7 @@ class Github::Backup
     File.join(backup_root, repository.name) + '.git'
   end
 
-  def backup_all(options={})
+  def backup_all
     FileUtils::mkdir_p(backup_root)
     repositories = client.repos(username).sort_by { |r| r.name }
     repositories.each do |repository|
