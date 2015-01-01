@@ -17,8 +17,14 @@ class Github::Backup
     if (options[:token] && !options[:login])
       options[:login] = @username
     end
+
     @debug = false
-    @client = Octokit::Client.new(:login => options[:login], :oauth_token => options[:token])
+
+    if options[:token]
+      @client = Octokit::Client.new(:access_token => options[:token])
+    else
+      @client = Octokit::Client.new
+    end
   end
 
   def execute
