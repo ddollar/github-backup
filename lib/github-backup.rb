@@ -33,7 +33,7 @@ class Github::Backup
 
   def execute
     backup_all
-  rescue Octokit::Unauthorized => e
+  rescue Octokit::Unauthorized
     puts "Github API authentication failed."
     puts "Please add a [github] section to your ~/.gitconfig"
     puts "  See: http://github.com/guides/tell-git-your-user-name-and-email-address"
