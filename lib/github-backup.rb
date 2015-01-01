@@ -53,7 +53,7 @@ class Github::Backup
 
   def find_repositories
     repos = []
-    repos.concat(client.repos(username))
+    repos.concat(first_page)
     last_response = client.last_response
 
     unless last_response.rels[:next].nil?
@@ -65,6 +65,16 @@ class Github::Backup
     end
 
     repos
+  end
+
+  def first_page
+    if username_is_authenticated_user?
+      client.repos
+    elsif username_is_organisation?
+      client.org_repos(username)
+    else
+      client.repos(username)
+    end
   end
 
   def backup_repository(repository)
@@ -85,6 +95,15 @@ class Github::Backup
     FileUtils::cd(backup_directory_for(repository)) do
       shell("git remote update")
     end
+  end
+
+  def username_is_organisation?
+    client.user(username).type == 'Organization'
+  end
+
+  def username_is_authenticated_user?
+    return false unless client.token_authenticated?
+    username == client.user.login
   end
 
   def shell(command)
