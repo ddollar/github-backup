@@ -43,14 +43,14 @@ class Github::Backup
   private ######################################################################
 
   def backup_directory_for(repository)
-    File.join(backup_root, repository.name) + '.git'
+    File.join(backup_root, repository.full_name) + '.git'
   end
 
   def backup_all
     FileUtils::mkdir_p(backup_root)
     repositories = find_repositories.sort_by { |r| r.name }
     repositories.each do |repository|
-      puts "Backing up: #{repository.name}"
+      puts "Backing up: #{repository.full_name}"
       backup_repository repository
     end
   end
@@ -91,7 +91,7 @@ class Github::Backup
 
   def backup_repository_initial(repository)
     FileUtils::cd(backup_root) do
-      shell("git clone --mirror -n #{repository.ssh_url}")
+      shell("git clone --mirror -n #{repository.ssh_url} #{repository.full_name}.git")
     end
   end
 
