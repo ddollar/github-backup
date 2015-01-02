@@ -34,6 +34,9 @@ Created by David Dollar
 Patches contributed by:
   Gabriel Gilder
 
+Fixed for Github v3 by:
+  [Gareth Rees](https://github.com/garethrees)
+
 ## Copyright
 
 Copyright (c) 2010 David Dollar.
