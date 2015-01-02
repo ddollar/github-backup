@@ -1,4 +1,4 @@
-VERSION = $(shell ruby -Ilib -rgithub-backup -e "puts Github::Backup::VERSION")
+VERSION = $(shell ruby -Ilib/github-backup -rversion -e "puts GithubBackup::VERSION")
 
 SOURCES = Gemfile Gemfile.lock bin/github-backup lib/github-backup.rb
 GEMSPEC = github-backup.gemspec

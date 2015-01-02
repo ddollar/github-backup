@@ -4,7 +4,7 @@ require "github-backup"
 
 Gem::Specification.new do |s|
   s.name        = "github-backup"
-  s.version     = Github::Backup::VERSION
+  s.version     = GithubBackup::VERSION
 
   s.author   = "David Dollar"
   s.email    = "david@dollar.io"

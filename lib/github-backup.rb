@@ -1,13 +1,10 @@
 require 'fileutils'
+require 'github-backup/version'
 require 'octokit'
 require 'pp'
 require 'yaml'
 
-module Github; end
-
-class Github::Backup
-
-  VERSION = "0.6.0"
+class GithubBackup
 
   attr_reader :backup_root, :debug, :username, :client
 
