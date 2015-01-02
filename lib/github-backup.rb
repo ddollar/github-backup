@@ -43,23 +43,23 @@ class Github::Backup
   private ######################################################################
 
   def backup_directory_for(repository)
-    File.join(backup_root, repository.name) + '.git'
+    File.join(backup_root, repository.full_name) + '.git'
   end
 
   def backup_all
     FileUtils::mkdir_p(backup_root)
-    repositories = find_repositories.sort_by { |r| r.name }
     repositories.each do |repository|
-      puts "Backing up: #{repository.name}"
+      puts "Backing up: #{repository.full_name}"
       backup_repository repository
     end
   end
 
-  def find_repositories
+  def repositories
     repos = []
-    repos.concat(first_page)
-    last_response = client.last_response
+    repos.concat(get_repositories_first_page)
 
+    # Iterate over paginated response
+    last_response = client.last_response
     unless last_response.rels[:next].nil?
       loop do
         last_response = last_response.rels[:next].get
@@ -71,7 +71,7 @@ class Github::Backup
     repos
   end
 
-  def first_page
+  def get_repositories_first_page
     if username_is_authenticated_user?
       client.repos
     elsif username_is_organisation?
@@ -91,7 +91,7 @@ class Github::Backup
 
   def backup_repository_initial(repository)
     FileUtils::cd(backup_root) do
-      shell("git clone --mirror -n #{repository.ssh_url}")
+      shell("git clone --mirror -n #{repository.ssh_url} #{repository.full_name}.git")
     end
   end
 
