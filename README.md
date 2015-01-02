@@ -27,7 +27,7 @@ can provide your Github OAuth access token at the command line.
 
 MIT License
 
-## Author
+## Authorship
 
 Created by David Dollar
 
