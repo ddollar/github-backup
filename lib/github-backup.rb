@@ -48,18 +48,18 @@ class Github::Backup
 
   def backup_all
     FileUtils::mkdir_p(backup_root)
-    repositories = find_repositories.sort_by { |r| r.name }
     repositories.each do |repository|
       puts "Backing up: #{repository.full_name}"
       backup_repository repository
     end
   end
 
-  def find_repositories
+  def repositories
     repos = []
-    repos.concat(first_page)
-    last_response = client.last_response
+    repos.concat(get_repositories_first_page)
 
+    # Iterate over paginated response
+    last_response = client.last_response
     unless last_response.rels[:next].nil?
       loop do
         last_response = last_response.rels[:next].get
@@ -71,7 +71,7 @@ class Github::Backup
     repos
   end
 
-  def first_page
+  def get_repositories_first_page
     if username_is_authenticated_user?
       client.repos
     elsif username_is_organisation?
