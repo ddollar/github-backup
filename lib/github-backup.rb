@@ -91,7 +91,7 @@ class Github::Backup
 
   def backup_repository_initial(repository)
     FileUtils::cd(backup_root) do
-      shell("git clone --mirror -n #{repository.clone_url}")
+      shell("git clone --mirror -n #{repository.ssh_url}")
     end
   end
 
