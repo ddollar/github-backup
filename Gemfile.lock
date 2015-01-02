@@ -1,37 +1,34 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    api_cache (0.2.3)
-    crack (0.1.8)
-    httparty (0.7.8)
-      crack (= 0.1.8)
-    mechanize (2.0.1)
-      net-http-digest_auth (~> 1.1, >= 1.1.1)
-      net-http-persistent (~> 1.8)
-      nokogiri (~> 1.4)
-      webrobots (~> 0.0, >= 0.0.9)
-    mime-types (1.16)
-    net-http-digest_auth (1.1.1)
-    net-http-persistent (1.8.1)
-    nokogiri (1.5.0)
-    octopi (0.4.5)
-      api_cache
-      httparty (>= 0.4.5)
-      mechanize (>= 0.9.3)
-      nokogiri (>= 1.3.1)
-    parka (0.6.2)
-      crack
-      rest-client
-      thor
-    rest-client (1.6.3)
-      mime-types (>= 1.16)
+    addressable (2.3.6)
+    crack (0.3.2)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
+    json (1.8.1)
+    mime-types (1.25.1)
+    multipart-post (2.0.0)
+    octokit (3.7.0)
+      sawyer (~> 0.6.0, >= 0.5.3)
+    parka (0.8.0)
+      crack (~> 0.3.0)
+      psych (~> 1.2.1)
+      rest-client (~> 1.6.7)
+      thor (~> 0.14.6)
+    psych (1.2.2)
+    rdoc (4.2.0)
+      json (~> 1.4)
+    rest-client (1.6.8)
+      mime-types (~> 1.16)
+      rdoc (>= 2.4.2)
+    sawyer (0.6.0)
+      addressable (~> 2.3.5)
+      faraday (~> 0.8, < 0.10)
     thor (0.14.6)
-    webrobots (0.0.11)
-      nokogiri (>= 1.4.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  octopi (~> 0.4.5)
+  octokit
   parka

@@ -2,7 +2,6 @@
 
 $:.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
-require 'octopi'
 require 'github-backup'
 require 'optparse'
 
@@ -12,10 +11,6 @@ optionparser = OptionParser.new do |opts|
   
   opts.on("-t", "--token TOKEN", "Github API Token") do |t|
     options[:token] = t
-  end
-  
-  opts.on("-u", "--username USER", "Github API Username") do |u|
-    options[:login] = u
   end
 end
 optionparser.parse!
