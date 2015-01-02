@@ -31,11 +31,9 @@ MIT License
 
 Created by David Dollar
 
-Patches contributed by:
-  Gabriel Gilder
+Fixed for Github v3 by [Gareth Rees](https://github.com/garethrees)
 
-Fixed for Github v3 by:
-  [Gareth Rees](https://github.com/garethrees)
+[Other Contributors](https://github.com/ddollar/github-backup/graphs/contributors)
 
 ## Copyright
 
