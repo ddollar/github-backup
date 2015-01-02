@@ -1,14 +1,15 @@
 VERSION = $(shell ruby -Ilib -rgithub-backup -e "puts Github::Backup::VERSION")
 
-SOURCES = Gemfile Gemfile.lock github-backup.gemspec bin/github-backup lib/github-backup.rb
-GEM     = pkg/github-backup-$(VERSION).gem
+SOURCES = Gemfile Gemfile.lock bin/github-backup lib/github-backup.rb
+GEMSPEC = github-backup.gemspec
+GEM     = github-backup-$(VERSION).gem
 
-all: $(GEM)
+all: pkg/$(GEM)
 
-release: $(GEM)
-	gem push $(GEM)
+release: pkg/$(GEM)
+	gem push pkg/$(GEM)
 
-$(GEM): $(SOURCES)
-	gem build github-backup.gemspec
+pkg/$(GEM): $(GEMSPEC) $(SOURCES)
+	gem build $(GEMSPEC)
 	@mkdir -p pkg/
-	mv github-backup-$(VERSION).gem $(GEM)
+	mv $(GEM) pkg/$(GEM)
