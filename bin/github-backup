@@ -20,8 +20,8 @@ unless ARGV.length == 2
   exit 1
 end
 
-username = ARGV.shift
-root     = ARGV.shift
+username              = ARGV.shift
+options[:backup_root] = ARGV.shift
 
-backup = GithubBackup::Backup.new(username, root, options)
+backup = GithubBackup::Backup.new(username, options)
 backup.execute
