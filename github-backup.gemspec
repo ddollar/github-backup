@@ -1,8 +1,6 @@
-# -*- encoding: utf-8 -*-
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+$:.unshift File.expand_path("../lib", __FILE__)
 
-require 'github-backup/version'
+require "github-backup/version"
 
 Gem::Specification.new do |s|
   s.name        = "github-backup"
@@ -17,7 +15,7 @@ Gem::Specification.new do |s|
 
   s.files         = `git ls-files`.split($/)
   s.require_paths = ['lib']
-  s.executables = "github-backup"
+  s.executables   = "github-backup"
 
   s.add_dependency "octokit", "~> 3.7"
 end
