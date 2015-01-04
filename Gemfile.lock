@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    github-backup (0.6.0)
+    github-backup (0.8.0)
       octokit (~> 3.7)
 
 GEM
