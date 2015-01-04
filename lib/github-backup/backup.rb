@@ -18,7 +18,7 @@ module GithubBackup
       puts "Or, use the arguments to authenticate with your username and API token."
     end
 
-    private ######################################################################
+    private
 
     def backup_root
       config.backup_root
