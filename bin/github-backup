@@ -23,5 +23,5 @@ end
 username = ARGV.shift
 root     = ARGV.shift
 
-backup = GithubBackup.new(username, root, options)
+backup = GithubBackup::Backup.new(username, root, options)
 backup.execute
