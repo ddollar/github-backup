@@ -80,5 +80,27 @@ describe GithubBackup::Config do
       end
 
     end
+
+    describe :== do
+
+      it 'is equal if its attributes are identical' do
+        opts = { :backup_root => '/tmp/backup',
+                 :gitconfig_path => '/tmp/gitconfig',
+                 :token => 'S3CR3T'}
+        backup = GithubBackup::Config.new(opts)
+        backup.dup.must_equal backup
+      end
+
+      it 'is not equal if any of the attributes vary' do
+        opts = { :backup_root => '/tmp/backup',
+                 :gitconfig_path => '/tmp/gitconfig',
+                 :token => 'S3CR3T'}
+        backup1 = GithubBackup::Config.new(opts)
+        backup2 = GithubBackup::Config.new(opts.merge(:token => 'PASSWORD'))
+        backup1.wont_equal backup2
+      end
+
+    end
+
   end
 end
