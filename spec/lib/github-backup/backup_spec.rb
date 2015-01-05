@@ -16,8 +16,6 @@ describe GithubBackup::Backup do
     end
 
     it 'configures the backup' do
-      skip('Define GithubBackup::Config#==')
-
       opts = { :backup_root => '/tmp', :token => 'S3CR3T' }
       config = GithubBackup::Config.new(opts)
       backup = GithubBackup::Backup.new('ddollar', opts)
