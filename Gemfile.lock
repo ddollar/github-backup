@@ -10,9 +10,11 @@ GEM
     addressable (2.3.6)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    minitest (5.5.0)
     multipart-post (2.0.0)
     octokit (3.7.0)
       sawyer (~> 0.6.0, >= 0.5.3)
+    rake (10.4.2)
     sawyer (0.6.0)
       addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
@@ -22,3 +24,5 @@ PLATFORMS
 
 DEPENDENCIES
   github-backup!
+  minitest (~> 5.5.0)
+  rake

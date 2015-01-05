@@ -1,5 +1,7 @@
 ## github-backup
 
+[![Code Climate](https://codeclimate.com/github/ddollar/github-backup/badges/gpa.svg)](https://codeclimate.com/github/ddollar/github-backup)
+
 Back up your Github repositories locally.
 
 To install it as a Gem, just run:

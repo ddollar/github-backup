@@ -13,6 +13,12 @@ module GithubBackup
       @token          = options.fetch(:token)          { default_token }
     end
 
+    def ==(other)
+      backup_root == other.backup_root &&
+        gitconfig_path == other.gitconfig_path &&
+          token == other.token
+    end
+
     private
 
     def default_token

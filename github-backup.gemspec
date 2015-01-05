@@ -18,4 +18,7 @@ Gem::Specification.new do |s|
   s.executables   = "github-backup"
 
   s.add_dependency "octokit", "~> 3.7"
+
+  s.add_development_dependency "rake"
+  s.add_development_dependency "minitest", "~> 5.5.0"
 end
