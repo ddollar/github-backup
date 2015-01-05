@@ -1,5 +1,6 @@
 ## github-backup
 
+[![Build Status](https://travis-ci.org/ddollar/github-backup.svg?branch=master)](https://travis-ci.org/ddollar/github-backup)
 [![Code Climate](https://codeclimate.com/github/ddollar/github-backup/badges/gpa.svg)](https://codeclimate.com/github/ddollar/github-backup)
 
 Back up your Github repositories locally.
