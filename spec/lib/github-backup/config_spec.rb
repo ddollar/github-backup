@@ -17,9 +17,11 @@ describe GithubBackup::Config do
 
     # :gitconfig_path
     it 'sets the default .gitconfig file path' do
-      # config = GithubBackup::Config.new(:backup_root => '/tmp')
-      # config.gitconfig_path.must_equal '~/.gitconfig'
-      skip('Figure out how to stub ENV')
+      env = ENV.to_hash.merge("HOME" => "/home/ruby")
+      Object.stub_const(:ENV, env) do
+        config = GithubBackup::Config.new(:backup_root => '/tmp')
+        config.gitconfig_path.must_equal '/home/ruby/.gitconfig'
+      end
     end
 
     it 'sets a .gitconfig path through an option' do
