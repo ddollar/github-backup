@@ -17,9 +17,8 @@ describe GithubBackup::Config do
 
     # :gitconfig_path
     it 'sets the default .gitconfig file path' do
-      # config = GithubBackup::Config.new(:backup_root => '/tmp')
-      # config.gitconfig_path.must_equal '~/.gitconfig'
-      skip('Figure out how to stub ENV')
+      config = GithubBackup::Config.new(:backup_root => '/tmp')
+      config.gitconfig_path.must_equal "#{ ENV['HOME'] }/.gitconfig"
     end
 
     it 'sets a .gitconfig path through an option' do
