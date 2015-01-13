@@ -5,9 +5,9 @@ describe GithubBackup::Config do
   describe :new do
 
     # :backup_root
-    it 'requires a backup_root option' do
-      proc { GithubBackup::Config.new() }.
-        must_raise ArgumentError, 'A backup_root option is required'
+    it 'sets the default backup_root to the current directory' do
+      config = GithubBackup::Config.new
+      config.backup_root.must_equal Dir.pwd
     end
 
     it 'sets the backup_root through an option' do
