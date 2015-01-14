@@ -7,7 +7,7 @@ require 'optparse'
 
 options = {}
 optionparser = OptionParser.new do |opts|
-  opts.banner = "Usage: github-backup [options] username local_backup_root"
+  opts.banner = "Usage: github-backup [options] username [local_backup_root]"
   
   opts.on("-t", "--token TOKEN", "Github API Token") do |t|
     options[:token] = t
@@ -15,7 +15,7 @@ optionparser = OptionParser.new do |opts|
 end
 optionparser.parse!
 
-unless ARGV.length == 2
+unless ARGV.length == 1
   puts optionparser.help
   exit 1
 end
