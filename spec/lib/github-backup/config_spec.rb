@@ -10,6 +10,11 @@ describe GithubBackup::Config do
       config.backup_root.must_equal Dir.pwd
     end
 
+    it 'sets the default backup_root if the option is nil' do
+      config = GithubBackup::Config.new(:backup_root => nil)
+      config.backup_root.must_equal Dir.pwd
+    end
+
     it 'sets the backup_root through an option' do
       config = GithubBackup::Config.new(:backup_root => '/tmp')
       config.backup_root.must_equal '/tmp'
@@ -18,6 +23,11 @@ describe GithubBackup::Config do
     # :gitconfig_path
     it 'sets the default .gitconfig file path' do
       config = GithubBackup::Config.new(:backup_root => '/tmp')
+      config.gitconfig_path.must_equal "#{ ENV['HOME'] }/.gitconfig"
+    end
+
+    it 'sets the default gitconfig_path if the option is nil' do
+      config = GithubBackup::Config.new(:gitconfig_path => nil)
       config.gitconfig_path.must_equal "#{ ENV['HOME'] }/.gitconfig"
     end
 

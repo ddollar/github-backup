@@ -8,9 +8,9 @@ module GithubBackup
     attr_reader :backup_root, :gitconfig_path, :token
 
     def initialize(options = {})
-      @backup_root    = options.fetch(:backup_root)    { Dir.pwd }
-      @gitconfig_path = options.fetch(:gitconfig_path) { DEFAULTS[:gitconfig_path] }
-      @token          = options.fetch(:token)          { default_token }
+      @backup_root    = options.fetch(:backup_root, nil)    || Dir.pwd
+      @gitconfig_path = options.fetch(:gitconfig_path, nil) || DEFAULTS[:gitconfig_path]
+      @token          = options.fetch(:token)               { default_token }
     end
 
     def ==(other)
