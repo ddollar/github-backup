@@ -15,7 +15,7 @@ optionparser = OptionParser.new do |opts|
 end
 optionparser.parse!
 
-unless ARGV.length == 1
+unless ARGV.length >= 1
   puts optionparser.help
   exit 1
 end
