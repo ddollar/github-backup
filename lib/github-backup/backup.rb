@@ -73,7 +73,7 @@ module GithubBackup
 
     def backup_repository_initial(repository)
       FileUtils::cd(backup_root) do
-        shell("git clone --mirror -n #{repository.clone_url} #{repository.full_name}.git")
+        shell("git clone --mirror -n #{repository.ssh_url} #{repository.full_name}.git")
       end
     end
 
