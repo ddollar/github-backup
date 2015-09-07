@@ -21,7 +21,8 @@ module GithubBackup
     private
 
     def backup_all
-      FileUtils::mkdir_p(config.backup_root)
+      make_backup_root
+
       repositories.each do |repository|
         puts "Backing up: #{repository.full_name}"
         args = { clone_url: repository.ssh_url,
@@ -40,5 +41,9 @@ module GithubBackup
       File.join(config.backup_root, repository.full_name) + '.git'
     end
 
+    def make_backup_root
+      # TODO: Handle errors
+      FileUtils.mkdir_p(config.backup_root)
+    end
   end
 end
