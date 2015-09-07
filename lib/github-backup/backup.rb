@@ -21,7 +21,7 @@ module GithubBackup
     private
 
     def backup_all
-      FileUtils::mkdir_p(backup_root)
+      FileUtils::mkdir_p(config.backup_root)
       repositories.each do |repository|
         puts "Backing up: #{repository.full_name}"
         args = { clone_url: repository.ssh_url,
@@ -58,11 +58,7 @@ module GithubBackup
     end
 
     def backup_directory_for(repository)
-      File.join(backup_root, repository.full_name) + '.git'
-    end
-
-    def backup_root
-      config.backup_root
+      File.join(config.backup_root, repository.full_name) + '.git'
     end
 
     def username_is_organisation?
