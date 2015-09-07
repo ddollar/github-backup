@@ -24,8 +24,8 @@ module GithubBackup
       make_backup_root
 
       repositories.each do |repository|
-        puts "Backing up: #{repository.full_name}"
-        args = { clone_url: repository.ssh_url,
+        puts "Backing up: #{repository.clone_url}"
+        args = { clone_url: repository.clone_url,
                  backup_path: backup_directory_for(repository) }
         GithubBackup::Repository.new(args).backup
       end
@@ -38,7 +38,7 @@ module GithubBackup
     end
 
     def backup_directory_for(repository)
-      File.join(config.backup_root, repository.full_name) + '.git'
+      File.join(config.backup_root, repository.backup_path)
     end
 
     def make_backup_root
