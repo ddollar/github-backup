@@ -31,43 +31,13 @@ module GithubBackup
     end
 
     def repositories
-      repos = []
-      repos.concat(get_repositories_first_page)
-
-      # Iterate over paginated response
-      last_response = client.last_response
-      unless last_response.rels[:next].nil?
-        loop do
-          last_response = last_response.rels[:next].get
-          repos.concat(last_response.data)
-          break if last_response.rels[:next].nil?
-        end
-      end
-
-      repos
-    end
-
-    def get_repositories_first_page
-      if username_is_authenticated_user?
-        client.repos
-      elsif username_is_organisation?
-        client.org_repos(username)
-      else
-        client.repos(username)
-      end
+      GithubBackup::GithubRepositoryCollection.
+        new(client).
+          repos(username)
     end
 
     def backup_directory_for(repository)
       File.join(config.backup_root, repository.full_name) + '.git'
-    end
-
-    def username_is_organisation?
-      client.user(username).type == 'Organization'
-    end
-
-    def username_is_authenticated_user?
-      return false unless client.token_authenticated?
-      username == client.user.login
     end
 
   end
