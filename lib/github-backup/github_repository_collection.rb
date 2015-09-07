@@ -16,9 +16,7 @@ module GithubBackup
           client.repos(username)
         end
 
-      all(first_page).map do |r|
-        GithubBackup::GithubRepositoryNormalizer.new(r)
-      end
+      all(first_page).map { |r| GithubBackup::Repository.new(r) }
     end
 
     private

@@ -22,13 +22,7 @@ module GithubBackup
 
     def backup_all
       make_backup_root
-
-      repositories.each do |repository|
-        puts "Backing up: #{repository.clone_url}"
-        args = { clone_url: repository.clone_url,
-                 backup_path: backup_directory_for(repository) }
-        GithubBackup::Repository.new(args).backup
-      end
+      repositories.each { |repository| repository.backup(config.backup_root) }
     end
 
     def repositories

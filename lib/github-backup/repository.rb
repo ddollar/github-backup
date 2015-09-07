@@ -1,29 +1,38 @@
 module GithubBackup
   class Repository
-    attr_reader :clone_url, :backup_path, :shell
+    attr_reader :sawyer_resource, :shell
 
-    def initialize(opts = {})
-      @clone_url = opts.fetch(:clone_url)
-      @backup_path = opts.fetch(:backup_path)
+    def initialize(sawyer_resource, opts = {})
+      @sawyer_resource = sawyer_resource
       @shell = opts[:shell] || Shell.new
     end
 
-    def backup
-      if File.exists?(backup_path)
-        backup_repository_incremental
+    def backup(backup_root)
+      full_backup_path = File.join(backup_root, backup_path)
+
+      if File.exists?(full_backup_path)
+        backup_repository_incremental(full_backup_path)
       else
-        backup_repository_initial
+        backup_repository_initial(full_backup_path)
       end
+    end
+
+    def clone_url
+      sawyer_resource.ssh_url
+    end
+
+    def backup_path
+      "#{ sawyer_resource.full_name }.git"
     end
 
     private
 
-    def backup_repository_initial
-      shell.run("git clone --mirror -n #{ clone_url } #{ backup_path }")
+    def backup_repository_initial(path)
+      shell.run("git clone --mirror -n #{ clone_url } #{ path }")
     end
 
-    def backup_repository_incremental
-      FileUtils.cd(backup_path) do
+    def backup_repository_incremental(path)
+      FileUtils.cd(path) do
         shell.run('git remote update')
       end
     end
