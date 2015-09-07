@@ -1,10 +1,12 @@
 $:.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+
 require 'github-backup'
 require 'minitest/autorun'
 require 'fakefs/safe'
+require File.join(File.dirname(__FILE__), 'support', 'deep_struct')
 
 def sawyer_repo
-  OpenStruct.new(
+  DeepStruct.new(
     {:id=>251112,
      :name=>"github-backup",
      :full_name=>"ddollar/github-backup",
