@@ -19,6 +19,28 @@ module GithubBackup
       all(first_page).map { |r| GithubBackup::Repository.new(r) }
     end
 
+    def gists(username)
+      first_page =
+        if username_is_authenticated_user?(username)
+          client.gists
+        else
+          client.gists(username)
+        end
+
+      all(first_page).map { |r| GithubBackup::Gist.new(r) }
+    end
+
+    def starred_gists(username)
+      first_page =
+        if username_is_authenticated_user?(username)
+          client.starred_gists
+        else
+          client.starred_gists(username)
+        end
+
+      all(first_page).map { |r| GithubBackup::Gist.new(r) }
+    end
+
     private
 
     def all(first_page)
