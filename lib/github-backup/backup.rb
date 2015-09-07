@@ -26,9 +26,11 @@ module GithubBackup
     end
 
     def repositories
-      GithubBackup::GithubRepositoryCollection.
-        new(client).
-          repos(username)
+      repo_collection.repos(username)
+    end
+
+    def repo_collection
+      @repo_collection ||= GithubBackup::GithubRepositoryCollection.new(client)
     end
 
     def backup_directory_for(repository)
