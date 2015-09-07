@@ -20,19 +20,13 @@ module GithubBackup
 
     private
 
-    def backup_root
-      config.backup_root
-    end
-
-    def backup_directory_for(repository)
-      File.join(backup_root, repository.full_name) + '.git'
-    end
-
     def backup_all
       FileUtils::mkdir_p(backup_root)
       repositories.each do |repository|
         puts "Backing up: #{repository.full_name}"
-        backup_repository repository
+        args = { clone_url: repository.ssh_url,
+                 backup_path: backup_directory_for(repository) }
+        GithubBackup::Repository.new(args).backup
       end
     end
 
@@ -63,24 +57,12 @@ module GithubBackup
       end
     end
 
-    def backup_repository(repository)
-      if File.exists?(backup_directory_for(repository))
-        backup_repository_incremental(repository)
-      else
-        backup_repository_initial(repository)
-      end
+    def backup_directory_for(repository)
+      File.join(backup_root, repository.full_name) + '.git'
     end
 
-    def backup_repository_initial(repository)
-      FileUtils::cd(backup_root) do
-        shell("git clone --mirror -n #{repository.ssh_url} #{repository.full_name}.git")
-      end
-    end
-
-    def backup_repository_incremental(repository)
-      FileUtils::cd(backup_directory_for(repository)) do
-        shell("git remote update")
-      end
+    def backup_root
+      config.backup_root
     end
 
     def username_is_organisation?
@@ -92,13 +74,5 @@ module GithubBackup
       username == client.user.login
     end
 
-    def shell(command)
-      puts "EXECUTING: #{command}" if debug
-      IO.popen(command, 'r') do |io|
-        output = io.read
-        puts "OUTPUT:" if debug
-        puts output if debug
-      end
-    end
   end
 end
