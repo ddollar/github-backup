@@ -125,3 +125,143 @@ def sawyer_repo
      :network_count=>18,
      :subscribers_count=>9})
 end
+
+def sawyer_anonymous_gist
+  DeepStruct.new(
+  {:url=>"https://api.github.com/gists/380919418d982afbc4fc",
+   :forks_url=>"https://api.github.com/gists/380919418d982afbc4fc/forks",
+   :commits_url=>"https://api.github.com/gists/380919418d982afbc4fc/commits",
+   :id=>"380919418d982afbc4fc",
+   :git_pull_url=>"https://gist.github.com/380919418d982afbc4fc.git",
+   :git_push_url=>"https://gist.github.com/380919418d982afbc4fc.git",
+   :html_url=>"https://gist.github.com/380919418d982afbc4fc",
+   :files=>
+    {:"anon.txt"=>
+      {:filename=>"anon.txt",
+       :type=>"text/plain",
+       :language=>"Text",
+       :raw_url=>
+        "https://gist.githubusercontent.com/anonymous/380919418d982afbc4fc/raw/6991197cadbb876aabebdaa9ead52962857f0443/anon.txt",
+       :size=>19,
+       :truncated=>false,
+       :content=>"Nothing to see here"}},
+   :public=>true,
+   :created_at=>'2015-09-07 22:23:58 UTC',
+   :updated_at=>'2015-09-07 22:23:58 UTC',
+   :description=>"Anonymous Gist",
+   :comments=>0,
+   :user=>nil,
+   :comments_url=>"https://api.github.com/gists/380919418d982afbc4fc/comments",
+   :forks=>[],
+   :history=>
+    [{:user=>
+       {:login=>"invalid-email-address",
+        :id=>148100,
+        :avatar_url=>"https://avatars.githubusercontent.com/u/148100?v=3",
+        :gravatar_id=>"",
+        :url=>"https://api.github.com/users/invalid-email-address",
+        :html_url=>"https://github.com/invalid-email-address",
+        :followers_url=>
+         "https://api.github.com/users/invalid-email-address/followers",
+        :following_url=>
+         "https://api.github.com/users/invalid-email-address/following{/other_user}",
+        :gists_url=>
+         "https://api.github.com/users/invalid-email-address/gists{/gist_id}",
+        :starred_url=>
+         "https://api.github.com/users/invalid-email-address/starred{/owner}{/repo}",
+        :subscriptions_url=>
+         "https://api.github.com/users/invalid-email-address/subscriptions",
+        :organizations_url=>
+         "https://api.github.com/users/invalid-email-address/orgs",
+        :repos_url=>"https://api.github.com/users/invalid-email-address/repos",
+        :events_url=>
+         "https://api.github.com/users/invalid-email-address/events{/privacy}",
+        :received_events_url=>
+         "https://api.github.com/users/invalid-email-address/received_events",
+        :type=>"User",
+        :site_admin=>false},
+      :version=>"496b2ba699998442fbf864e9e7dcf47165b2f478",
+      :committed_at=>'2015-09-07 22:23:58 UTC',
+      :change_status=>{:total=>1, :additions=>1, :deletions=>0},
+      :url=>
+       "https://api.github.com/gists/380919418d982afbc4fc/496b2ba699998442fbf864e9e7dcf47165b2f478"}]}
+       )
+end
+
+def sawyer_public_gist
+  DeepStruct.new(
+  {:url=>"https://api.github.com/gists/dae4757f11749b6edaf2",
+   :forks_url=>"https://api.github.com/gists/dae4757f11749b6edaf2/forks",
+   :commits_url=>"https://api.github.com/gists/dae4757f11749b6edaf2/commits",
+   :id=>"dae4757f11749b6edaf2",
+   :git_pull_url=>"https://gist.github.com/dae4757f11749b6edaf2.git",
+   :git_push_url=>"https://gist.github.com/dae4757f11749b6edaf2.git",
+   :html_url=>"https://gist.github.com/dae4757f11749b6edaf2",
+   :files=>
+    {:"test.txt"=>
+      {:filename=>"test.txt",
+       :type=>"text/plain",
+       :language=>"Text",
+       :raw_url=>
+        "https://gist.githubusercontent.com/garethrees/dae4757f11749b6edaf2/raw/3fde4e20239e009fb18787483735352a778229da/test.txt",
+       :size=>5,
+       :truncated=>false,
+       :content=>"1,2,3"}},
+   :public=>true,
+   :created_at=>'2015-09-07 22:34:59 UTC',
+   :updated_at=>'2015-09-07 22:34:59 UTC',
+   :description=>"Test Gist",
+   :comments=>0,
+   :user=>nil,
+   :comments_url=>"https://api.github.com/gists/dae4757f11749b6edaf2/comments",
+   :owner=>
+    {:login=>"garethrees",
+     :id=>282788,
+     :avatar_url=>"https://avatars.githubusercontent.com/u/282788?v=3",
+     :gravatar_id=>"",
+     :url=>"https://api.github.com/users/garethrees",
+     :html_url=>"https://github.com/garethrees",
+     :followers_url=>"https://api.github.com/users/garethrees/followers",
+     :following_url=>
+      "https://api.github.com/users/garethrees/following{/other_user}",
+     :gists_url=>"https://api.github.com/users/garethrees/gists{/gist_id}",
+     :starred_url=>
+      "https://api.github.com/users/garethrees/starred{/owner}{/repo}",
+     :subscriptions_url=>"https://api.github.com/users/garethrees/subscriptions",
+     :organizations_url=>"https://api.github.com/users/garethrees/orgs",
+     :repos_url=>"https://api.github.com/users/garethrees/repos",
+     :events_url=>"https://api.github.com/users/garethrees/events{/privacy}",
+     :received_events_url=>
+      "https://api.github.com/users/garethrees/received_events",
+     :type=>"User",
+     :site_admin=>false},
+   :forks=>[],
+   :history=>
+    [{:user=>
+       {:login=>"garethrees",
+        :id=>282788,
+        :avatar_url=>"https://avatars.githubusercontent.com/u/282788?v=3",
+        :gravatar_id=>"",
+        :url=>"https://api.github.com/users/garethrees",
+        :html_url=>"https://github.com/garethrees",
+        :followers_url=>"https://api.github.com/users/garethrees/followers",
+        :following_url=>
+         "https://api.github.com/users/garethrees/following{/other_user}",
+        :gists_url=>"https://api.github.com/users/garethrees/gists{/gist_id}",
+        :starred_url=>
+         "https://api.github.com/users/garethrees/starred{/owner}{/repo}",
+        :subscriptions_url=>
+         "https://api.github.com/users/garethrees/subscriptions",
+        :organizations_url=>"https://api.github.com/users/garethrees/orgs",
+        :repos_url=>"https://api.github.com/users/garethrees/repos",
+        :events_url=>"https://api.github.com/users/garethrees/events{/privacy}",
+        :received_events_url=>
+         "https://api.github.com/users/garethrees/received_events",
+        :type=>"User",
+        :site_admin=>false},
+      :version=>"99e263bff14f9565b844f7913b6b505513308a5f",
+      :committed_at=>'2015-09-07 22:34:59 UTC',
+      :change_status=>{:total=>1, :additions=>1, :deletions=>0},
+      :url=>
+       "https://api.github.com/gists/dae4757f11749b6edaf2/99e263bff14f9565b844f7913b6b505513308a5f"}]})
+end
