@@ -8,9 +8,17 @@ require 'optparse'
 options = {}
 optionparser = OptionParser.new do |opts|
   opts.banner = "Usage: github-backup [options] username [local_backup_root]"
-  
+
   opts.on("-t", "--token TOKEN", "Github API Token") do |t|
     options[:token] = t
+  end
+
+  opts.on("--gists", "Backup username's gists") do |g|
+    options[:gists] = true
+  end
+
+  opts.on("--starred-gists", "Backup username's starred gists") do |g|
+    options[:starred_gists] = true
   end
 end
 optionparser.parse!

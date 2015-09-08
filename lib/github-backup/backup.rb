@@ -1,12 +1,14 @@
 module GithubBackup
   class Backup
-    attr_reader :debug, :username, :client, :config
+    attr_reader :debug, :username, :client, :gists, :starred_gists, :config
 
     def initialize(username, options = {})
-      @username    = username
-      @debug       = false
-      @config      = Config.new(options)
-      @client      = Octokit::Client.new(:access_token => config.token)
+      @username      = username
+      @debug         = false
+      @gists         = options.delete(:gists)
+      @starred_gists = options.delete(:starred_gists)
+      @config        = Config.new(options)
+      @client        = Octokit::Client.new(:access_token => config.token)
     end
 
     def execute
@@ -22,11 +24,17 @@ module GithubBackup
 
     def backup_all
       make_backup_root
-      repositories.each { |repository| repository.backup(config.backup_root) }
-    end
+      repo_collection.repos(username).each { |r| r.backup(config.backup_root) }
 
-    def repositories
-      repo_collection.repos(username)
+      if gists
+        repo_collection.gists(username).
+          each { |r| r.backup(config.backup_root) }
+      end
+
+      if starred_gists
+        repo_collection.starred_gists(username).
+          each { |r| r.backup(config.backup_root) }
+      end
     end
 
     def repo_collection
