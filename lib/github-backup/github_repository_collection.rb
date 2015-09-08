@@ -41,6 +41,21 @@ module GithubBackup
       all(first_page).map { |r| GithubBackup::Gist.new(r) }
     end
 
+    def wikis(username)
+      first_page =
+        if username_is_authenticated_user?(username)
+          client.repos
+        elsif username_is_organisation?(username)
+          client.org_repos(username)
+        else
+          client.repos(username)
+        end
+
+      all(first_page).
+        select(&:has_wiki?).
+          map { |r| GithubBackup::Wiki.new(r) }
+    end
+
     private
 
     def all(first_page)

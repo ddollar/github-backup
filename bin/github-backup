@@ -20,6 +20,10 @@ optionparser = OptionParser.new do |opts|
   opts.on("--starred-gists", "Backup username's starred gists") do |g|
     options[:starred_gists] = true
   end
+
+  opts.on("--wikis", "Backup username's wikis") do |g|
+    options[:wikis] = true
+  end
 end
 optionparser.parse!
 
