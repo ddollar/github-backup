@@ -10,6 +10,8 @@ module GithubBackup
     def backup(backup_root)
       full_backup_path = File.join(backup_root, backup_path)
 
+      puts "Backing up #{ full_backup_path }"
+
       if File.exists?(full_backup_path)
         backup_repository_incremental(full_backup_path)
       else
