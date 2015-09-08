@@ -19,10 +19,8 @@ describe GithubBackup::Wiki do
   describe '#backup_path' do
 
     it 'returns the repository backup path' do
-      FakeFS do
-        repo = GithubBackup::Wiki.new(sawyer_repo)
-        repo.backup_path.must_equal 'ddollar/github-backup.wiki.git'
-      end
+      repo = GithubBackup::Wiki.new(sawyer_repo)
+      repo.backup_path.must_equal 'ddollar/github-backup.wiki.git'
     end
 
   end

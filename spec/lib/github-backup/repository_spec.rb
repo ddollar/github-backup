@@ -29,7 +29,6 @@ describe GithubBackup::Repository do
   describe '#backup' do
 
     it 'clones the repository if it has not yet been backed up' do
-
       cmd = 'git clone --mirror -n ' \
             'git@github.com:ddollar/github-backup.git ' \
             '/ddollar/github-backup.git'
@@ -73,10 +72,8 @@ describe GithubBackup::Repository do
   describe '#backup_path' do
 
     it 'returns the repository backup path' do
-      FakeFS do
-        repo = GithubBackup::Repository.new(sawyer_repo)
-        repo.backup_path.must_equal 'ddollar/github-backup.git'
-      end
+      repo = GithubBackup::Repository.new(sawyer_repo)
+      repo.backup_path.must_equal 'ddollar/github-backup.git'
     end
 
   end
