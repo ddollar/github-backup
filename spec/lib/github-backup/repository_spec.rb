@@ -40,6 +40,8 @@ describe GithubBackup::Repository do
         repo.backup(Dir.pwd)
       end
 
+      FakeFS::FileSystem.clear
+
       shell.verify
     end
 
@@ -54,6 +56,8 @@ describe GithubBackup::Repository do
         FileUtils.mkdir_p(File.join(Dir.pwd, repo.backup_path))
         repo.backup(Dir.pwd)
       end
+
+      FakeFS::FileSystem.clear
 
       shell.verify
     end
