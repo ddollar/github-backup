@@ -35,9 +35,10 @@ module GithubBackup
         if username_is_authenticated_user?(username)
           client.starred_gists
         else
-          client.starred_gists(username)
+          [] # Can only list authenticated user's gists at the moment
         end
 
+      return first_page if first_page.empty?
       all(first_page).map { |r| GithubBackup::Gist.new(r) }
     end
 

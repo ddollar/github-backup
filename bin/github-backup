@@ -17,7 +17,7 @@ optionparser = OptionParser.new do |opts|
     options[:gists] = true
   end
 
-  opts.on("--starred-gists", "Backup username's starred gists") do |g|
+  opts.on("--starred-gists", "Backup authenticated username's starred gists") do |g|
     options[:starred_gists] = true
   end
 
