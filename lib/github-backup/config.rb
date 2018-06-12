@@ -32,7 +32,7 @@ module GithubBackup
       config = {}
       group = nil
 
-      return config unless File.exists?(gitconfig_path)
+      return config unless File.exist?(gitconfig_path)
 
       File.foreach(gitconfig_path) do |line|
         line.strip!
