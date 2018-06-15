@@ -12,7 +12,7 @@ module GithubBackup
 
       puts "Backing up #{ full_backup_path }"
 
-      if File.exists?(full_backup_path)
+      if File.exist?(full_backup_path)
         backup_repository_incremental(full_backup_path)
       else
         backup_repository_initial(full_backup_path)
